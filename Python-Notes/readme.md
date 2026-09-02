@@ -15,4 +15,4 @@ Kişisel Python notları — Markdown formatında düzenlenmiştir.
 
 ---
 
-[← Kitaplık ana sayfası](../library/README.md) · [Depo kökü](../readme.md)
+[← README](../README.md)

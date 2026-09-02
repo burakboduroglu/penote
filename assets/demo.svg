@@ -1,0 +1,53 @@
+<!--
+  README demo card, 1000x620. The SVG is the source; regenerate the PNG with:
+    rsvg-convert -w 1000 -h 620 assets/demo.svg -o assets/demo.png
+  The terminal body is what a category-filtered `penote list` actually prints;
+  see library/cli.js for the layout and the colours.
+-->
+<svg width="1000" height="620" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1000" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151B36"/><stop offset="0.55" stop-color="#0E1226"/><stop offset="1" stop-color="#070A16"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="500" y1="0" x2="1000" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#818CF8" stop-opacity="0.16"/><stop offset="1" stop-color="#818CF8" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="termShadow" x="-30%" y="-30%" width="170%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="620" rx="20" fill="url(#bg)"/>
+  <rect width="1000" height="620" rx="20" fill="url(#glow)"/>
+
+  <g filter="url(#termShadow)">
+    <rect x="56" y="56" width="888" height="508" rx="16" fill="#0A0E1C" stroke="#242C47" stroke-width="1"/>
+  </g>
+  <rect x="56" y="56" width="888" height="44" rx="16" fill="#151B2E"/>
+  <rect x="56" y="84" width="888" height="16" fill="#151B2E"/>
+  <circle cx="82" cy="78" r="6" fill="#FF5F57"/>
+  <circle cx="104" cy="78" r="6" fill="#FEBC2E"/>
+  <circle cx="126" cy="78" r="6" fill="#28C840"/>
+  <text x="500" y="84" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace"
+        font-size="17" fill="#6C769E">penote</text>
+
+  <g font-family="SF Mono, Menlo, Consolas, monospace" font-size="17" xml:space="preserve">
+    <text x="86" y="146"><tspan fill="#A5B4FC">$</tspan><tspan fill="#E6EAF7"> penote list --cat java</tspan></text>
+
+    <text x="86" y="196" fill="#FFFFFF" font-weight="700">penote kitaplığı</text>
+    <text x="86" y="224" fill="#6B769E">Filtre — kategori: java</text>
+    <text x="86" y="252" fill="#3A4362">────────────────────────────────────────</text>
+
+    <text x="86" y="296" fill="#22D3EE">── Java <tspan fill="#3A4362">────────────────────────────────</tspan></text>
+
+    <text x="86" y="330"><tspan fill="#5A6591">[01] </tspan><tspan fill="#E5C07B">Java</tspan><tspan fill="#FFFFFF" font-weight="700">   Lombok</tspan></text>
+    <text x="86" y="356" fill="#7A85AD">     Lombok anotasyonları ve örnekleri</text>
+    <text x="86" y="380" fill="#5A6591">     Java-Notes/lombok.md</text>
+
+    <text x="86" y="414"><tspan fill="#5A6591">[02] </tspan><tspan fill="#E5C07B">Java</tspan><tspan fill="#FFFFFF" font-weight="700">   JPA / Hibernate</tspan></text>
+    <text x="86" y="440" fill="#7A85AD">     Hibernate anotasyonları ve ORM örnekleri</text>
+    <text x="86" y="464" fill="#5A6591">     Java-Notes/jpa_hibernate.md</text>
+
+    <text x="86" y="522" fill="#5A6591">3 not · açmak için: open &lt;id&gt; · TUI için: open --tui</text>
+  </g>
+</svg>

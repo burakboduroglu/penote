@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Smoke on Node ${{ matrix.node }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [18, 20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Node version
+        run: node --version
+
+      - name: List notes
+        run: node library/cli.js list
+
+      - name: Search notes
+        run: node library/cli.js search hibernate
+
+      - name: Help
+        run: node library/cli.js help
+
+      - name: Package dry-run
+        run: npm pack --dry-run
+
+  smoke-bun:
+    name: Smoke on bun (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: bun version
+        run: bun --version
+
+      # The documented development commands. The published binary still runs on
+      # Node, which the smoke job above covers.
+      - name: List notes
+        run: bun library/cli.js list
+
+      - name: Search notes
+        run: bun library/cli.js search hibernate
+
+      - name: Help
+        run: bun library/cli.js help

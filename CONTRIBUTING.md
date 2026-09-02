@@ -1,123 +1,102 @@
-# Katkı Yönergeleri
+# Contributing to penote
 
-devnotes projesine katkı yapmakla ilgilendiğiniz için teşekkür ederiz!
+Thanks for looking. This repository is **agentic learning docs**: Turkish
+Markdown notes organised by topic, plus a zero-dependency Node.js CLI and a
+single-file Web UI so humans and coding agents can find and open the same
+material.
 
-## Nasıl Katkıda Bulunabilirsiniz?
+Useful contributions are usually small — a clearer note, a missing example, a
+CLI edge case, or a Web UI fix. Before building anything substantial, open an
+issue and check the direction is wanted.
 
-### Yeni Notlar Eklemek
+**Out of scope for drive-by PRs:** renaming category folders, adding a package
+manager / build toolchain for the notes CLI, splitting the Web UI into multiple
+files, or turning the project into a general CMS.
 
-1. Uygun kategoriye gidin (Java-Notes, JavaScript-Notes, Python-Notes, SQL-Notes, MongoDB-Notes)
-2. Yeni bir `.md` dosyası oluşturun
-3. Not içeriğinizi Markdown formatında yazın
-4. Dosyayı kategori klasörüne kaydedin
-5. [library/README.md](library/README.md) dosyasındaki ilgili tabloyu güncelleyin
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
-### Mevcut Notları İyileştirmek
+## Getting started
 
-- Yazım/gramer hataları düzeltin
-- Açıklıkları artırın
-- Kod örneklerini güncelleyin
-- Eksik açıklamalar ekleyin
-
-### Hata Bildir
-
-Hata bulduğunuz zaman:
-
-1. GitHub'da bir "Issue" açın
-2. Hatanın açık bir açıklamasını verin
-3. İlgili not dosyasını referans gösterin
-4. Mümkünse düzeltme önerisi yapın
-
-## Not Yazma Rehberi
-
-Yeni bir not yazarken şunlara dikkat edin:
-
-### Başlık ve Yapı
-
-- Açık ve özlü başlık kullanın
-- İçeriği mantıklı bölümlere ayırın
-- Başlıklar için `##`, `###` kullanın
-
-### İçerik
-
-- **Test edin** - Tüm kod örneklerinin doğru çalıştığından emin olun
-- **Açık olun** - Karmaşık kavramları örneklerle açıklayın
-- **Güncel olun** - Yazılım sürümleriyle güncel bilgi verin
-- **Orijinal olun** - Kendi kelimelerinizle yazın
-
-### Kod Örnekleri
-
-```markdown
-### Örnek Başlığı
-
-Kısa açıklama:
-
-\`\`\`java
-// Kod örneği
-public class Hello {
-public static void main(String[] args) {
-System.out.println("Merhaba!");
-}
-}
-\`\`\`
-
-Açıklama metni...
-```
-
-### Linkler ve Referanslar
-
-- Diğer notlara link verin: `[JPA Hibernate](../Java-Notes/jpa_hibernate.md)`
-- Dış kaynakları ekleyin: `[Resmi Dokümantasyon](https://example.com)`
-
-## Katkı Süreci
-
-1. **Fork** - Depoyu forklayın
-2. **Branch** - Değişiklikleriniz için bir dal oluşturun:
-   ```bash
-   git checkout -b ozellik/yeni-python-notu
-   ```
-3. **Commit** - Değişiklikleri commit edin:
-   ```bash
-   git commit -m "Python: Yeni temel not eklendi"
-   ```
-4. **Push** - Dalınızı pushlayin:
-   ```bash
-   git push origin ozellik/yeni-python-notu
-   ```
-5. **Pull Request** - GitHub'da pull request açın ve açık bir açıklama verin
-
-## Lokal Kurulum (Geliştirme)
+**Requirements:** [bun](https://bun.sh) for development, Node.js ≥ 18 for the
+published binary. No `bun install` is required — the CLI has no dependencies.
 
 ```bash
-git clone <your-fork>
-cd dev-notes
-npm install
-npm link  # devnotes komutunu global olarak test etmek için
+git clone https://github.com/burakboduroglu/penote.git
+cd penote
+bun library/cli.js list
+bun library/cli.js search hibernate
+bun library/cli.js open --editor
 ```
 
-## Dosya Adlandırması
+| Command | What it does |
+| ------- | ------------ |
+| `bun library/cli.js list` | Discover every note |
+| `bun library/cli.js search <kw>` | Full-library search |
+| `bun library/cli.js open --tui` | Interactive TUI |
+| `bun library/cli.js open --editor` | Local Web UI |
+| `bun run start` | Same as `bun library/cli.js` |
+| `bun run dev` | Open the Web UI |
 
-- Dosya adları küçük harf ve alt tire kullanın: `advanced_python_1.md`
-- Kategori klasörü adlarını değiştirmeyin
-- Benzer konular için sıra numarası ekleyin: `python_basic_1.md`, `python_basic_2.md`
+CI runs list/search smoke checks on Node 18, 20, and 22.
 
-## Lisans
+## Where things live
 
-Bu projeye katkıda bulunarak, katkılarınızın MIT lisansı altında yayımlanacağını kabul etmektedir.
+```
+*-Notes/              Topic Markdown (Turkish explanations)
+library/cli.js        CLI / TUI — Node built-ins only
+library/index.html    Web UI — single file, no CDN
+assets/               Logo and static assets
+AGENTS.md             Rules for coding agents editing this repo
+```
 
-## Sorular ve İlke
+## Adding or editing notes
 
-- Katkı hakkında sorularınız varsa, bir Issue açın
-- **Önemli:** Bu repo kesinlikle programlama notları içindir
-  - Reklam yayınlamayın
-  - Başka konular için gönderilen issue'ler kapatılacak ve kullanıcı spam olarak bildirilecektir
+- Place the file in the correct `*-Notes/` folder.
+- Name it `lowercase_with_underscores.md`; use `_1`, `_2` for multi-part series.
+- Follow the note template in [AGENTS.md](AGENTS.md): Turkish prose, fenced
+  code blocks with a language tag, no YAML frontmatter, no external images.
+- Do not rename existing category folders — the CLI derives categories from them.
 
-## İyileştirme İçin Fikirler
+## Commits
 
-- Yeni programlama dillerine dair notlar
-- Mevcut notlara daha fazla örnek
-- İnteraktif quiz'ler veya alıştırmalar
-- Video/kaynak bağlantıları
-- CLI aracında iyileştirmeler
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org):
 
-Tekrardan, katkılarınız için teşekkür ederiz! 🚀
+```
+feat(notes): add spring transaction boundaries note
+fix(cli): search flag not filtering by category
+docs: clarify TUI key bindings in README
+chore(ci): run smoke checks on Node 22
+```
+
+| Type | Use for |
+| ---- | ------- |
+| `feat` | New note, CLI capability, or Web UI behaviour |
+| `fix` | Incorrect behaviour or broken content |
+| `docs` | README, contributing, comments that do not change behaviour |
+| `refactor` | Internal cleanup with no user-visible change |
+| `chore` | CI, tooling, release prep |
+
+Optional scopes: `notes`, `java`, `javascript`, `python`, `sql`, `mongodb`,
+`cli`, `web-ui`, `docs`, `ci`.
+
+Use the imperative mood, keep the subject under ~72 characters, and put the
+reasoning in the body when the change is not self-evident. No emoji.
+
+## Pull requests
+
+Branch from `main`, keep the change focused, and fill in the template. Say what
+changed, why, and how you verified it.
+
+- Update `README.md` when CLI flags, TUI keys, or project layout change.
+- Add a `CHANGELOG.md` entry under `Unreleased` for anything a user would notice.
+- Keep the CLI zero-dependency and the Web UI a single file unless the change
+  is explicitly about that architecture.
+
+Do not commit secrets, tokens, or machine-specific paths.
+
+## Reporting
+
+- **Bugs and ideas:** [the issue tracker](https://github.com/burakboduroglu/penote/issues)
+- **Vulnerabilities:** privately, per [SECURITY.md](SECURITY.md) — never as a public issue
+
+Thank you for contributing.

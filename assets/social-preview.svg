@@ -1,0 +1,89 @@
+<!--
+  GitHub social preview card, 1280x640. The SVG is the source; regenerate the PNG with:
+    rsvg-convert -w 1280 -h 640 assets/social-preview.svg -o assets/social-preview.png
+  GitHub has no API for the social preview, so the PNG is uploaded by hand under
+  Settings > General > Social preview.
+-->
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151B36"/><stop offset="0.55" stop-color="#0E1226"/><stop offset="1" stop-color="#070A16"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="640" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#818CF8" stop-opacity="0.18"/><stop offset="1" stop-color="#818CF8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="72" y1="40" x2="440" y2="472" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5B4FC"/><stop offset="0.45" stop-color="#6366F1"/><stop offset="1" stop-color="#3730A3"/>
+    </linearGradient>
+    <filter id="termShadow" x="-30%" y="-30%" width="170%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+
+  <!-- mark: assets/penote-logo.svg, scaled to 96px -->
+  <g transform="translate(88, 96) scale(0.1875)">
+    <rect width="512" height="512" rx="139" fill="url(#plate)"/>
+    <g transform="translate(25.6, 30) scale(0.9)"
+       fill="none" stroke="#0B1026" stroke-width="44" stroke-linecap="round">
+      <path d="M108 144 V368"/>
+      <path d="M108 144 A98 78 0 0 1 108 300"/>
+      <path d="M280 300 V206"/>
+      <path d="M280 206 A62 62 0 0 1 404 206 V300"/>
+    </g>
+    <path d="M412 62 C412 95 419 102 452 102 C419 102 412 109 412 142
+             C412 109 405 102 372 102 C405 102 412 95 412 62 Z" fill="#F8FAFF"/>
+  </g>
+
+  <text x="88" y="292" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif"
+        font-size="80" font-weight="700" fill="#FFFFFF" letter-spacing="-2">penote</text>
+
+  <text x="90" y="352" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif"
+        font-size="29" font-weight="500" fill="#D3DAF6">Agentic learning docs, in plain Markdown.</text>
+  <text x="90" y="394" font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif"
+        font-size="29" font-weight="500" fill="#8994BE">Read them from a terminal, TUI, or browser.</text>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif"
+     font-size="22" font-weight="600" fill="#D5DBFB">
+    <rect x="90" y="456" width="130" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.08" stroke="#818CF8" stroke-opacity="0.35"/>
+    <text x="155" y="486" text-anchor="middle">Node 18+</text>
+    <rect x="236" y="456" width="140" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.08" stroke="#818CF8" stroke-opacity="0.35"/>
+    <text x="306" y="486" text-anchor="middle">Zero deps</text>
+    <rect x="392" y="456" width="110" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.08" stroke="#818CF8" stroke-opacity="0.35"/>
+    <text x="447" y="486" text-anchor="middle">MIT</text>
+  </g>
+
+  <text x="90" y="566" font-family="SF Mono, Menlo, Consolas, monospace"
+        font-size="19" fill="#5A6591">github.com/burakboduroglu/penote</text>
+
+  <!-- terminal -->
+  <g filter="url(#termShadow)">
+    <rect x="700" y="140" width="500" height="368" rx="16" fill="#0A0E1C" stroke="#242C47" stroke-width="1"/>
+  </g>
+  <rect x="700" y="140" width="500" height="44" rx="16" fill="#151B2E"/>
+  <rect x="700" y="168" width="500" height="16" fill="#151B2E"/>
+  <circle cx="726" cy="162" r="6" fill="#FF5F57"/>
+  <circle cx="748" cy="162" r="6" fill="#FEBC2E"/>
+  <circle cx="770" cy="162" r="6" fill="#28C840"/>
+  <text x="950" y="168" text-anchor="middle" font-family="SF Mono, Menlo, Consolas, monospace"
+        font-size="17" fill="#6C769E">penote</text>
+
+  <!-- The lines below are what the CLI actually prints for `penote search hibernate`;
+       see library/cli.js for the layout and the colours. -->
+  <g font-family="SF Mono, Menlo, Consolas, monospace" font-size="16" xml:space="preserve">
+    <text x="726" y="228"><tspan fill="#A5B4FC">$</tspan><tspan fill="#E6EAF7"> penote search hibernate</tspan></text>
+
+    <text x="726" y="278" fill="#FFFFFF" font-weight="700">penote kitaplığı</text>
+    <text x="726" y="304" fill="#6B769E">Filtre — arama: "hibernate"</text>
+    <text x="726" y="330" fill="#3A4362">────────────────────────────────</text>
+
+    <text x="726" y="372" fill="#22D3EE">── Java <tspan fill="#3A4362">──────────────────────</tspan></text>
+    <text x="726" y="404"><tspan fill="#5A6591">[02] </tspan><tspan fill="#E5C07B">Java</tspan><tspan fill="#FFFFFF" font-weight="700">   JPA / Hibernate</tspan></text>
+    <text x="726" y="430" fill="#7A85AD">     Hibernate anotasyonları ve ORM örnekleri</text>
+    <text x="726" y="454" fill="#5A6591">     Java-Notes/jpa_hibernate.md</text>
+
+    <text x="726" y="486" fill="#5A6591">1 not · açmak için: open &lt;id&gt;</text>
+  </g>
+</svg>

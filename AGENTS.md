@@ -1,26 +1,37 @@
 # AGENTS.md
 
-> Bu repoda çalışan AI ajanları (Claude Code, Copilot, Cursor vb.) için rehber.
-> Herhangi bir değişiklik yapmadan önce bu dosyayı oku.
+> Guide for AI agents working in this repository.
+> Read this file before making any change.
 
 ---
 
 ## Project Summary
 
-**dev-notes** is a personal programming notes library written in Markdown.
-Notes are organized by language/topic and accessible via a zero-dependency Node.js CLI and a browser-based Web UI.
+**penote** (CLI: `penote`, npm: `@burakboduroglu/penote`) is an **agentic
+learning docs** library: programming notes in Markdown, organised by
+language/topic, reachable via a zero-dependency Node.js CLI and a
+browser-based Web UI.
 
-- **No build step.** No package manager. Node.js 18+ is the only requirement.
-- **Content is king.** The value of this repo is in the `.md` files, not the tooling.
-- **CLI entry point:** `library/cli.js`
+The GitHub repository, the npm scope and the CLI binary are all **penote**.
+
+- **No build step for the notes tooling.** Node.js 18+ is the only runtime
+  requirement for the published CLI and Web UI.
+- **Use `bun` for every local command** (`bun library/cli.js …`, `bun run dev`).
+  Never write `npm`, `pnpm`, or `yarn` in docs or scripts. The published binary
+  still targets Node.js built-ins, so do not introduce bun-only APIs.
+- **Content is king.** The value of this repo is in the `.md` notes, not the
+  tooling.
+- **CLI entry point:** `library/cli.js` (binary name: `penote`)
 - **Web UI entry point:** `library/index.html`
+- **Human-facing repo docs** (README, CONTRIBUTING, SECURITY, …) are English.
+  **Note bodies** stay Turkish (see below).
 
 ---
 
 ## Repository Structure
 
 ```
-dev-notes/
+penote/                  # GitHub repo / local folder name
 ├── Java-Notes/          # Lombok, JPA/Hibernate, Spring Boot
 ├── Javascript-Notes/    # Array methods, closures, async, regex
 ├── Python-Notes/        # Basics, advanced topics, DB operations
@@ -29,10 +40,21 @@ dev-notes/
 ├── library/
 │   ├── cli.js           # CLI tool (Node.js, no dependencies)
 │   └── index.html       # Web UI (vanilla HTML/JS/CSS)
-├── assets/              # Static assets (logo, images)
+├── assets/
+│   ├── penote-logo.svg     # App icon; SVG is the source of truth
+│   ├── social-preview.svg  # GitHub link preview card (1280x640)
+│   ├── social-preview.png  # Rendered from the SVG; uploaded by hand
+│   ├── demo.svg            # README terminal card (1000x620)
+│   └── demo.png            # Rendered from the SVG
+├── .github/             # Issue forms, PR template, CI / publish workflows
+├── AGENTS.md
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
-├── LICENSE.md
-└── readme.md
+├── LICENSE
+├── README.md
+├── SECURITY.md
+└── package.json         # npm package metadata for `@burakboduroglu/penote`
 ```
 
 ---
@@ -47,40 +69,46 @@ dev-notes/
 | Suffix with `_1`, `_2` for multi-part series | `sql_advanced_1.md`, `sql_advanced_2.md` |
 | Place in the correct category folder         | `Python-Notes/advanced_python_3.md`      |
 
-### Not Dosyası Şablonu
+### Note file template
 
-Her yeni not bu yapıyı takip etmelidir:
+Every new note should follow this shape:
 
 ```markdown
-# Konu Başlığı
+# Topic title
 
-> Bu notun tek cümlelik Türkçe özeti.
+> One-sentence Turkish summary of this note.
 
 ---
 
-## Bölüm 1
+## Section 1
 
-İçerik buraya...
+Content here...
 
-## Bölüm 2
+## Section 2
 
-İçerik buraya...
+Content here...
 
 ---
 
 **Kaynaklar**
 
-- Kaynak veya dokümantasyon linki (varsa)
+- Source or documentation link (if any)
 ```
 
-### Not İçeriği Kuralları
+### Note content rules
 
-- **Dil: Tüm notlar Türkçe yazılmalıdır.** İngilizce kaynaklardan alınan notlara Türkçe açıklama ve özet eklenmelidir. Teknik terimler (variable, function, query vb.) orijinal haliyle kullanılabilir; ancak açıklamalar mutlaka Türkçe olmalıdır.
-- **Çeviri notu:** Mevcut İngilizce notlar güncellenirken önce Türkçe karşılık yazılır, ardından teknik içerik korunur.
-- **Kod blokları:** Her zaman dil tanımlayıcısı belirt (` ```java `, ` ```python `, vb.).
-- **Dış görsel yok:** Not dosyalarına harici resim ekleme. Gerekirse `assets/` altından göreli yol kullan.
-- **Odaklı tut:** Dosya başına bir kavram veya birbiriyle ilişkili dar bir konu grubu.
-- **Frontmatter yok (YAML/TOML):** CLI yalnızca düz Markdown ayrıştırır.
+- **Language: all notes must be written in Turkish.** Material taken from
+  English sources still needs Turkish explanation and summary. Technical terms
+  (`variable`, `function`, `query`, …) may stay in English; explanations must
+  be Turkish.
+- **When updating older English notes:** write the Turkish equivalent first,
+  then keep the technical content accurate.
+- **Code blocks:** always include a language identifier (```` ```java ````,
+  ```` ```python ````, etc.).
+- **No external images in notes.** If needed, use a relative path under
+  `assets/`.
+- **Stay focused:** one concept (or a tight related group) per file.
+- **No frontmatter (YAML/TOML):** the CLI parses plain Markdown only.
 
 ---
 
@@ -90,19 +118,23 @@ Her yeni not bu yapıyı takip etmelidir:
 
 - Reads all `.md` files from the category folders.
 - Provides list, search, open (editor / TUI / browser), and help commands.
-- Parses file paths to derive category and note name — **folder and file naming directly affects CLI output.**
+- Parses file paths to derive category and note name — **folder and file naming
+  directly affects CLI output.**
 
 ### Rules when modifying `cli.js`
 
-- Do **not** introduce npm dependencies. Use only Node.js built-in modules.
-- Do **not** change the command interface (flags, subcommands) without updating `readme.md`.
-- Keep the TUI key bindings consistent with the table in `readme.md`.
+- Do **not** introduce runtime dependencies. Use only Node.js built-in
+  modules.
+- Do **not** change the command interface (flags, subcommands) without updating
+  `README.md`.
+- Keep the TUI key bindings consistent with the table in `README.md`.
+- Keep the published binary name `penote` unless an explicit rename is requested.
 - Test every modified command manually before committing:
 
 ```bash
-node library/cli.js list
-node library/cli.js search <keyword>
-node library/cli.js open --tui
+bun library/cli.js list
+bun library/cli.js search <keyword>
+bun library/cli.js open --tui
 ```
 
 ---
@@ -115,37 +147,67 @@ node library/cli.js open --tui
 - Test in a browser by starting the HTTP server:
 
 ```bash
-node library/cli.js open --editor
+bun library/cli.js open --editor
 ```
+
+---
+
+## Working with brand assets (`assets/`)
+
+- The **SVG is the source of truth**; the PNG next to it is a render. Never edit
+  a PNG by hand — change the SVG and re-render:
+
+```bash
+rsvg-convert -w 1280 -h 640 assets/social-preview.svg -o assets/social-preview.png
+rsvg-convert -w 1000 -h 620 assets/demo.svg  -o assets/demo.png
+```
+
+- `social-preview.png` is the GitHub link preview. GitHub has no API for it, so
+  it is uploaded by hand under **Settings > General > Social preview**.
+- Terminal text inside `demo.svg` and `social-preview.svg` must match what
+  `library/cli.js` actually prints — re-run the command before changing a line.
+- Keep the indigo palette and the rounded-tile mark consistent across all three
+  files and the Web UI favicon in `library/index.html`.
+- SVG comments must not contain `--` (it is an XML parse error); write CLI flags
+  in prose instead.
 
 ---
 
 ## What Agents Should NOT Do
 
-- Do **not** rename existing category folders (`Java-Notes`, `Python-Notes`, etc.) — the CLI resolves categories from folder names.
-- Do **not** add a `package.json` or any dependency management file.
-- Do **not** modify `LICENSE.md`.
+- Do **not** rename existing category folders (`Java-Notes`, `Python-Notes`,
+  etc.) — the CLI resolves categories from folder names.
+- Do **not** add a dependency lockfile or package-manager toolchain for the
+  notes CLI. The existing root `package.json` is publish metadata only; keep
+  the CLI zero-dependency.
+- Do **not** modify `LICENSE` unless the copyright holder asks.
 - Do **not** add auto-generated files or compiled output to the repo.
-- Do **not** edit `CONTRIBUTING.md` unless explicitly asked.
-- Do **not** create notes outside the established category folders without confirming with the user.
+- Do **not** edit `CONTRIBUTING.md`, `SECURITY.md`, or `CODE_OF_CONDUCT.md`
+  unless explicitly asked (or the change is part of an approved repo-surface
+  update).
+- Do **not** create notes outside the established category folders without
+  confirming with the user.
 
 ---
 
 ## Commit Message Convention
 
-```
-<type>(<scope>): <short description>
+Follow [Conventional Commits](https://www.conventionalcommits.org):
 
-Types  : add | update | fix | remove | refactor
-Scopes : java | javascript | python | sql | mongodb | cli | web-ui | docs
 ```
+<type>(<optional-scope>): <short description>
+```
+
+| Types | `feat` \| `fix` \| `docs` \| `refactor` \| `chore` \| `remove` |
+| Scopes | `notes` \| `java` \| `javascript` \| `python` \| `sql` \| `mongodb` \| `cli` \| `web-ui` \| `docs` \| `ci` |
 
 **Examples:**
 
 ```
-add(python): advanced decorators note
+feat(python): add advanced decorators note
 fix(cli): search flag not filtering by category
-update(docs): add new CLI command to readme
+docs: add new CLI command to README
+chore(ci): smoke-test list and search on Node 22
 ```
 
 ---
@@ -155,6 +217,7 @@ update(docs): add new CLI command to readme
 - [ ] Note file follows the naming convention (`lowercase_with_underscores.md`)
 - [ ] Note is placed in the correct category folder
 - [ ] Code blocks have language identifiers
-- [ ] CLI still runs without errors (`node library/cli.js list`)
-- [ ] Commit message follows the convention above
-- [ ] `readme.md` updated if CLI commands or project structure changed
+- [ ] CLI still runs without errors (`bun library/cli.js list`)
+- [ ] Commit message follows Conventional Commits
+- [ ] `README.md` updated if CLI commands or project structure changed
+- [ ] `CHANGELOG.md` updated under `Unreleased` for user-visible changes

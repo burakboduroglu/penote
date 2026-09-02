@@ -1,10 +1,10 @@
 {
-  "name": "devnotetr",
-  "version": "2.1.0",
-  "description": "Kişisel programlama notları kitaplığı — Markdown, CLI ve web UI ile.",
+  "name": "@burakboduroglu/penote",
+  "version": "3.0.0",
+  "description": "Agentic learning docs — programming notes with a zero-dependency CLI and Web UI.",
   "main": "library/cli.js",
   "bin": {
-    "devnote": "library/cli.js"
+    "penote": "library/cli.js"
   },
   "files": [
     "Java-Notes",
@@ -12,13 +12,18 @@
     "MongoDB-Notes",
     "Python-Notes",
     "SQL-Notes",
-    "assets",
+    "assets/penote-logo.svg",
+    "assets/demo.png",
     "library",
-    "CONTRIBUTING.md"
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
-    "start": "node library/cli.js",
-    "dev": "node library/cli.js open --editor"
+    "start": "bun library/cli.js",
+    "dev": "bun library/cli.js open --editor"
   },
   "publishConfig": {
     "access": "public"
@@ -28,6 +33,8 @@
     "programming",
     "cli",
     "markdown",
+    "agentic",
+    "learning",
     "java",
     "javascript",
     "python",
@@ -38,11 +45,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/burakboduroglu/dev-notes.git"
+    "url": "git+https://github.com/burakboduroglu/penote.git"
   },
-  "homepage": "https://github.com/burakboduroglu/dev-notes#readme",
+  "homepage": "https://github.com/burakboduroglu/penote#readme",
   "bugs": {
-    "url": "https://github.com/burakboduroglu/dev-notes/issues"
+    "url": "https://github.com/burakboduroglu/penote/issues"
   },
   "engines": {
     "node": ">=18.0.0"
