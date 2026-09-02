@@ -4,6 +4,14 @@ All notable changes to penote are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2026-09-02
+
+### Fixed
+
+- Republished `@burakboduroglu/penote` so the npm packument is complete and
+  `npm install @burakboduroglu/penote` / `npm view` resolve correctly. The
+  earlier `3.0.0` tarball existed without a usable package root document.
+
 ## [3.0.0] - 2026-09-02
 
 ### Added
@@ -51,5 +59,6 @@ follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Zero-dependency CLI with list, search, open (editor / TUI / browser).
 - Single-file Web UI with category filter and instant search.
 
+[3.0.1]: https://github.com/burakboduroglu/penote/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/burakboduroglu/penote/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/burakboduroglu/penote/releases/tag/v2.1.0

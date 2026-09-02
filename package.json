@@ -1,6 +1,6 @@
 {
   "name": "@burakboduroglu/penote",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Agentic learning docs — programming notes with a zero-dependency CLI and Web UI.",
   "main": "library/cli.js",
   "bin": {
