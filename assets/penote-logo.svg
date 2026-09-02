@@ -1,0 +1,34 @@
+<!--
+  penote mark: a geometric "pn" monogram with an AI sparkle, on a rounded
+  indigo tile. Quiet app-icon language — same family as portkill / macshelf.
+  The monogram is drawn on a 512 grid and scaled to 0.9 so the sparkle keeps
+  a clear top-right corner.
+-->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">penote logo</title>
+  <desc id="desc">Indigo rounded tile with a lowercase pn monogram and a sparkle.</desc>
+  <defs>
+    <linearGradient id="plate" x1="72" y1="40" x2="440" y2="472" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5B4FC"/>
+      <stop offset="0.45" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#3730A3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="139" fill="url(#plate)"/>
+
+  <!-- pn monogram: p = stem + descender + bowl, n = stem + shoulder -->
+  <g transform="translate(25.6, 30) scale(0.9)"
+     fill="none" stroke="#0B1026" stroke-width="44" stroke-linecap="round">
+    <path d="M108 144 V368"/>
+    <path d="M108 144 A98 78 0 0 1 108 300"/>
+    <path d="M280 300 V206"/>
+    <path d="M280 206 A62 62 0 0 1 404 206 V300"/>
+  </g>
+
+  <!-- AI sparkle -->
+  <path
+    d="M412 62 C412 95 419 102 452 102 C419 102 412 109 412 142
+       C412 109 405 102 372 102 C405 102 412 95 412 62 Z"
+    fill="#F8FAFF"/>
+</svg>

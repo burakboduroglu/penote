@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/burakboduroglu/penote/security/advisories/new
+    about: Report privately through a security advisory — never as a public issue.
+  - name: Question or idea to talk through
+    url: https://github.com/burakboduroglu/penote/discussions
+    about: Not sure it is a bug yet? Open a discussion.
+  - name: Contributing guide
+    url: https://github.com/burakboduroglu/penote/blob/main/CONTRIBUTING.md
+    about: How to add notes, run the CLI locally, and open a pull request.

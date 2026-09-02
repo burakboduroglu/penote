@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * devnotes CLI v2
+ * penote CLI v2
  *
  * Komutlar:
  *   list [--cat <cat>] [--search <q>]   Notları listele / filtrele
@@ -212,19 +212,19 @@ function printSectionHeader(text) {
 function printHelp() {
   const D = (s) => c("dim", s);
   console.log(`
-${cb("white", "devnote")} ${D("v2")} — kişisel not kitaplığı CLI
+${cb("white", "penote")} ${D("v2")} — agentic learning docs CLI
 ${D("─".repeat(58))}
 ${cb("white", "KOMUTLAR")}
 
-  ${D("devnote help")}                         ${D("# Komutları gösterir")}
-  ${D("devnote list")}                         ${D("# Tüm notları listeler")}
-  ${D("devnote list --cat java")}              ${D("# Java notlarını listeler")}
-  ${D("devnote list --cat py --search temel")} ${D("# Python notlarında arama yapar")}
-  ${D("devnote search hibernate")}             ${D("# Tüm notlarda arama yapar")}
-  ${D("devnote open 3")}                       ${D("# 3 numaralı notu editörde açar")}
-  ${D("devnote open --tui")}                   ${D("# TUI modunu açar")}
-  ${D("devnote open --editor")}                ${D("# Web arayüzünü açar")}
-  ${D("devnote open --browser 6")}             ${D("# 6 numaralı notu tarayıcıda açar")}
+  ${D("penote help")}                         ${D("# Komutları gösterir")}
+  ${D("penote list")}                         ${D("# Tüm notları listeler")}
+  ${D("penote list --cat java")}              ${D("# Java notlarını listeler")}
+  ${D("penote list --cat py --search temel")} ${D("# Python notlarında arama yapar")}
+  ${D("penote search hibernate")}             ${D("# Tüm notlarda arama yapar")}
+  ${D("penote open 3")}                       ${D("# 3 numaralı notu editörde açar")}
+  ${D("penote open --tui")}                   ${D("# TUI modunu açar")}
+  ${D("penote open --editor")}                ${D("# Web arayüzünü açar")}
+  ${D("penote open --browser 6")}             ${D("# 6 numaralı notu tarayıcıda açar")}
 
 ${D("Kategori: java | js | py | sql | mongo")}
 `);
@@ -343,7 +343,7 @@ function cmdList(flags) {
   );
 
   console.log();
-  console.log(cb("white", "  devnotes kitaplığı"));
+  console.log(cb("white", "  penote kitaplığı"));
   if (catFilter || searchFilter) {
     const parts = [];
     if (catFilter)    parts.push(`kategori: ${catFilter}`);
@@ -655,7 +655,7 @@ function buildNoteHtml(note, mdContent) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${note.title} — devnotes</title>
+<title>${note.title} — penote</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f1117'/%3E%3Crect x='6' y='8' width='14' height='2' rx='1' fill='%236c8ef5'/%3E%3Crect x='6' y='13' width='20' height='2' rx='1' fill='%234a5568'/%3E%3Crect x='6' y='18' width='16' height='2' rx='1' fill='%234a5568'/%3E%3Ccircle cx='26' cy='24' r='5' fill='%236c8ef5'/%3E%3Ccircle cx='26' cy='24' r='2.5' fill='%230f1117'/%3E%3C/svg%3E" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -1056,7 +1056,7 @@ function cmdTUI() {
     const isQuit  = str === "q" || str === "Q" || (key.ctrl && key.name === "c");
 
     if (isQuit) {
-      cleanup(c("dim", "  devnote kapatıldı."));
+      cleanup(c("dim", "  penote kapatıldı."));
       process.exit(0);
     }
 
@@ -1187,7 +1187,7 @@ function cmdTUI() {
 
   // SIGINT (dış kaynaklı Ctrl+C) — cleanup garanti
   process.on("SIGINT", () => {
-    cleanup(c("dim", "  devnote kapatıldı."));
+    cleanup(c("dim", "  penote kapatıldı."));
     process.exit(0);
   });
 

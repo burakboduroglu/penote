@@ -1,0 +1,45 @@
+name: Feature request
+description: Suggest something the notes library, CLI, or Web UI should do
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project stays deliberately small: Turkish Markdown notes by topic,
+        plus a zero-dependency CLI and a single-file Web UI. Proposals that
+        keep that shape are the easiest to accept.
+
+        Renaming category folders, adding a build toolchain for the notes CLI,
+        or turning the project into a CMS are out of scope for drive-by PRs.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation you hit, not the solution you have in mind.
+      placeholder: I want agents to discover note summaries without opening every file…
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like it to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Including doing nothing, or an existing command that nearly works.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This does not require renaming existing category folders
+        - label: This keeps the CLI free of npm runtime dependencies
+        - label: This keeps the Web UI as a single file (or explicitly proposes changing that)
